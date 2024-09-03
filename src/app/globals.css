@@ -2,32 +2,173 @@
 @tailwind components;
 @tailwind utilities;
 
+/* styles.css */
+
+/* Root variables for light mode */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --input-bg: #f9f9f9;
+  --input-border: #ddd;
+  --button-bg: #010001;
+  --button-text: #ffffff;
+  --error-text: #e53e3e;
+  --navbar-bg:#8522a3;
+  --navbar-text: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* Dark mode variables */
+[data-theme='dark'] {
+  --bg-color: #dbd9d9;
+  --text-color: #f1f1f1;
+  --input-bg: #2a2a2a;
+  --input-border: #444;
+  --button-bg: #2c9b6d;
+  --button-text: #ffffff;
+  --error-text: #ff6b6b;
+  --navbar-bg: linear-gradient(90deg, #bd9fd1, #e3d8e6);
+  --navbar-text: #ffffff;
+}
+
+/* General body styling */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow: hidden;
+}
+
+/* Navbar styling */
+.navbar {
+  background: var(--navbar-bg);
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  animation: slideIn 0.5s ease-out;
+}
+
+.navbar-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--navbar-text);
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Page container styling */
+.page-container {
+  padding: 5rem 2rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+/* Form styling */
+.form {
+  background: var(--bg-color);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Label styling */
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-color);
+}
+
+/* Input styling */
+.input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+  border-color: var(--button-bg);
+  box-shadow: 0 0 5px rgba(55, 179, 165, 0.5);
+  outline: none;
+}
+
+/* Error text styling */
+.error-text {
+  color: var(--error-text);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Checkbox styling */
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+}
+
+/* Checkbox label styling */
+.checkbox-label {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-color);
+}
+
+/* Submit button styling */
+.submit-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: darken(var(--button-bg), 10%);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:active {
+  background-color: darken(var(--button-bg), 20%);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
